@@ -4,6 +4,9 @@
 \usepackage{graphicx}
 \usepackage{longtable}
 \usepackage{float}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
 
 \title{Spadek swobodny}
 \author{Nikodem Grzela}
@@ -131,9 +134,28 @@
     101 & 10,00 & 490,00 & 6,40 & 496,40 \\ \hline
 \end{longtable}
 
+\begin{tikzpicture}[scale = 2]
+\begin{axis}[
+    enlargelimits=false,
+]
+\addplot+[
+    only marks,
+    scatter,
+    mark=halfcircle*,
+    mark size=0.5pt]
+table[meta=s]
+{SpadekSwobodny1.csv};
 
+\addplot [
+    domain=0:10, 
+    samples=20, 
+    color=red,
+]
+{9.8*x^2/2};
+\addlegendentry{\(h(t)=h_0-\frac{gt^2}{2}\)}
 
-
+\end{axis}
+\end{tikzpicture}
 \section{Wnioski}
 
 \end{document}
